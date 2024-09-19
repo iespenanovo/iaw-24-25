@@ -1,0 +1,33 @@
+* {box-sizing: border-box;}
+
+.contenedor {
+	width: 80%;
+	border: 1px solid grey;
+	padding: 1rem;
+}
+h1 {
+	text-align: center;
+}
+ul {
+	color: blue;
+}
+ol {
+	color:green;
+	list-style: upper-roman;
+}
+ol ol {
+	list-style: lower-alpha;
+	color: red;
+}
+
+table {
+	width: 80%;
+	border: 1px solid blue;
+	border-collapse: collapse;
+
+}
+th, td {
+	border: 1px solid blue;
+	text-align: center;
+	padding: 5px;
+}
