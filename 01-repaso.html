@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Repaso formularios HTML</title>
+	<link rel="stylesheet" href="css/01-estilo.css">
+</head>
+<body>
+	<div class="contenedor">
+		<h1>Repaso Formularios HTML</h1>
+		<form action="" method="GET"> 
+			<!-- method="POST", no se visualizan en URL los campos-->
+			<fieldset>
+				<legend>Grupo 1</legend>
+
+				<div class="campo">
+					<label for="nombre">Nombre:</label>
+					<input id="nombre" type="text" name="nombre"  >
+					<!-- parámetro: placeholder="Nombre" -->
+					<!-- value="valor por defecto" -->
+				</div>
+				<div class="campo">
+					<label for="email">E-mail:</label>
+					<input id="email" type="email" name="email">
+				</div>
+				<div class="campo">
+					<label for="edad">Edad (años):</label>
+					<input id="edad" type="number" name="edad">
+				</div>
+				
+			</fieldset>
+			<fieldset>
+				<legend>Grupo 2</legend>
+				<div class="campo">
+					<label>Sexo:</label>
+					<input id="mujer" type="radio" name="sexo" value="M">
+					<!-- checked para selección por defecto -->
+					<label for="mujer">Mujer</label>
+					<input id="hombre" type="radio" name="sexo" value="H" >
+					<label for="hombre">Hombre</label>
+				</div>
+				<div class="campo">
+					<input id="terminos" type="checkbox" name="terminos" value="SI" required>
+					<!-- checked para selección por defecto -->
+					<label for="terminos">Acepto términos y condiciones</label>
+				</div>
+
+
+
+			</fieldset>
+
+			<div class="campo">
+				<input type="submit" value="Enviar datos">
+			</div>
+			
+		</form>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+* {box-sizing: border-box;}
+
+.contenedor {
+	width: 80%;
+	margin: auto;
+	border: 1px solid grey;
+	padding: 1rem;
+}
+h1 {
+	text-align: center;
+}
+
+.campo {
+	margin: 0.8rem 0;
+}
+
+#edad {
+	width: 3rem;
+}
