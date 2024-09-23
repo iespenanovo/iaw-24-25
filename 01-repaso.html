@@ -28,12 +28,17 @@
 					<label for="edad">Edad (años):</label>
 					<input id="edad" type="number" name="edad">
 				</div>
+				<div class="campo">
+					<label for="fnac">Fecha nacimiento:</label
+					>
+					<input type="date" name="fnac" id="fnac">
+				</div>
 				
 			</fieldset>
 			<fieldset>
 				<legend>Grupo 2</legend>
 				<div class="campo">
-					<label>Sexo:</label>
+					<label class="bloque">Sexo:</label>
 					<input id="mujer" type="radio" name="sexo" value="M">
 					<!-- checked para selección por defecto -->
 					<label for="mujer">Mujer</label>
@@ -45,10 +50,42 @@
 					<!-- checked para selección por defecto -->
 					<label for="terminos">Acepto términos y condiciones</label>
 				</div>
-
-
-
 			</fieldset>
+			<fieldset>
+				<legend>Grupo 3</legend>
+				<div class="campo">
+					<label for="prov">Provincia:</label
+					>
+					<select name="prov" id="prov">
+						<option value=""></option>
+						<option value="CO">A Coruña</option>
+						<option value="LU" >Lugo</option>
+						<option value="OU">Ourense</option>
+						<option value="PO">Ponteveddra</option>
+						<!-- selected, parámetro para seleccionar una opción por defecto -->
+					</select>
+				</div>
+				<div class="campo">
+					<label for="dep">Deportes:</label>
+					<select name="dep[]" id="dep" multiple size="6">
+						<!-- size permite indicar el número de opciones que se visualizan sin necesidad de 'scroll', por defecto se visualizan solo 4/5 opciones -->
+						<option value="F">Fútbol</option>
+						<option value="B">Baloncesto</option>
+						<option value="T">Ténis</option>
+						<option value="P">Polo</option>
+						<option value="C">Ciclismo</option>
+						<option value="G">Golf</option>
+					</select>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Grupo 4</legend>
+				<div class="campo">
+					<label class="bloque" for="coment">Comentario:</label>
+					<textarea name="coment" id="coment"></textarea>
+				</div>
+			</fieldset>
+			<input type="hidden" value="ref123" name="ref">
 
 			<div class="campo">
 				<input type="submit" value="Enviar datos">
