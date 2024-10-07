@@ -13,6 +13,9 @@
 			border: 1px solid grey;
 			padding: 1rem;
 		}
+		.dcha {
+			text-align: right;
+		}
 	</style>
 </head>
 <body>
@@ -87,8 +90,58 @@
 
 	echo "\n\t</table>";
 
+	/* arrays asociativos, con índices de texto */
 
-	?>
+	$ventasMeses = array(
+		'enero' => 20456 ,
+		'febrero' => 55899 ,
+		'marzo' => 40440 ,
+		'abril' => 30353 ,
+		'mayo' => 8456 ,
+		'junio' => 555 ,
+		 );
+
+	/* equivale a:
+		$ventasMeses["enero"]=20456;
+		$ventasMeses["febrero"]=55899;
+		...
+	*/
+
+	echo "<br>Array \$ventasMeses:<br>";
+	var_dump($ventasMeses);
+	// vamos a mostrar datos del array en una lista desordenada <ul>
+	echo "\n\t<ul>";
+	foreach ($ventasMeses as $nombreMes => $ventasMes) {
+		echo "\n\t\t<li>$nombreMes = $ventasMes €</li>";
+	}
+	echo "\n\t</ul>";
+
+?>
+
+	<table class="tabla">
+		<caption>Ventas por mes</caption>
+		<tr>
+			<th>Mes</th>
+			<th>€</th>
+		</tr>
+		<?php
+		$ventasTotal=0;
+		foreach ($ventasMeses as $nombreMes => $ventasMes) {
+			echo "\n\t\t<tr>";
+			echo "\n\t\t\t<td>$nombreMes</td>";
+			echo "\n\t\t\t<td class='dcha'>$ventasMes €</td>";
+			echo "\n\t\t</tr>";
+			$ventasTotal = $ventasTotal + $ventasMes; //acumula las ventas de todos los meses
+		}
+		echo "\n\t\t<tr>";
+		echo "\n\t\t\t<td><strong>TOTAL</strong></td>";
+		echo "\n\t\t\t<td class='dcha'><strong>$ventasTotal €</strong></td>";
+		echo "\n\t\t</tr>";
+
+		?>
+
+	</table>
+
 
 </body>
 </html>
