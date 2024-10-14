@@ -91,6 +91,39 @@
 
 		}
 		echo "\n</ul>";
+
+	?>
+
+	<h3>Bucle for</h3>
+	<?php  
+		echo "\n<ul>";
+		$color="azul";
+		for ($i=1; $i <=10 ; $i++) { 
+			echo "\n\t<li class='$color'>$i</li>";
+			$color=$color=="azul"?"rojo":"azul";
+		}
+		echo "\n</ul>";
+
+	?>
+	<h3>Bucle foreach (arrays)</h3>
+	<?php 
+		//return; //finaliza una función, pero en cuerpo principal, finaliza el script
+		$diasSemana = array("lunes","martes","miércoles","jueves","viernes","sábado","domingo");
+		//						0 		1 		2 ...									6
+		echo "<br>Posición 2 de \$diasSemana: $diasSemana[2]";
+
+		foreach ($diasSemana as $indice => $valor) {
+			//if($indice==1) continue;
+			//if($indice==4) break;
+			echo "\n<br>$valor ($indice), ";
+
+		}
+		echo "\n<hr>";
+		//usando for:
+		for ($i=0; $i <=6 ; $i++) { 
+			echo "\n<br>$diasSemana[$i] ($i), ";
+		}
+
 	?>
 
 </body>
