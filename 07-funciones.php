@@ -30,22 +30,26 @@
 		echo "\n<br>$a + $b + 4 = $suma";
 		$c=1;
 		$d=3;
-		echo "\n<br>$a + $b +$c + $d = ".sumar($a,$b,$c,$d);
+		echo "\n<br>$a + $b + $c + $d = ".sumar2($a,$b,$c,$d);
 
 		function sumar3() //número indefinido de parámetros
 		{
 			$numeros=func_get_args();//devuelve un array con todos los parámetros
-			echo "\b<br>";
-			var_dump($numeros);
+			//echo "\b<br>";
+			//var_dump($numeros);
+			$total=0;
+			foreach ($numeros as $numero) {
+				$total+=$numero;
+			}
+			return $total;//suma de todos los parámetros
 
 		}
 
-		sumar3();
-		sumar3(1);
-		sumar3(1,2);
-		sumar3(1,2,3);
-		sumar3(1,2,3,4,5,6,7,8,9,10);
-
+		echo "\n<br>sumar3() : ".sumar3();
+		echo "\n<br>sumar3(1) : ".sumar3(1);
+		echo "\n<br>sumar3(1,2) : ".sumar3(1,2);
+		echo "\n<br>sumar3(1,2,3) : ".sumar3(1,2,3);
+		echo "\n<br>sumar3(1,2,3,4,5,6,7,8,9,10) : ".sumar3(1,2,3,4,5,6,7,8,9,10);
 
 	?>
 </body>
