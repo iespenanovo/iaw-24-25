@@ -40,6 +40,7 @@
 
 		//funciones de fechas
 		setlocale(LC_ALL,"spanish");
+		error_reporting(0);//para evitar el error 'Deprecated: Function strftime()';
 
 		$dia=29;
 		$mes=2;
