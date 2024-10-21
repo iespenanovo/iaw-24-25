@@ -21,6 +21,7 @@
 		$coment=$_POST['coment']??"";
 		$ref=$_POST['ref']??"";// ref es campo oculto, también podemos leer
 		//var_dump($ref);
+		$errores="";
 	?>
 	<div class="contenedor">
 		<h1>Validar formularios con PHP</h1>
@@ -29,14 +30,28 @@
 			<fieldset>
 				<legend>Grupo 1</legend>
 
+				<?php 
+					$clases="";
+					if ($_POST and $nombre=="") {//$_POST devuelve false si el formulario no fue enviado, y true en caso contrario
+						$clases="error";
+						$errores.="\n<p>El campo nombre es obligatorio</p>";
+					}
+				?>
 				<div class="campo">
-					<label for="nombre">Nombre:</label>
+					<label for="nombre" class="<?php echo $clases ?>">Nombre:</label>
 					<input id="nombre" type="text" name="nombre" value="<?php echo $nombre ?>" >
 					<!-- parámetro: placeholder="Nombre" -->
 					<!-- value="valor por defecto" -->
 				</div>
+				<?php 
+					$clases="";
+					if ($_POST and $email=="") {//$_POST devuelve false si el formulario no fue enviado, y true en caso contrario
+						$clases="error";
+						$errores.="\n<p>El campo email es obligatorio</p>";
+					}
+				?>				
 				<div class="campo">
-					<label for="email">E-mail:</label>
+					<label for="email" class="<?php echo $clases ?>">E-mail:</label>
 					<input id="email" type="email" name="email" value="<?php echo $email ?>">
 				</div>
 				<div class="campo">
@@ -102,6 +117,12 @@
 				</div>
 			</fieldset>
 			<input type="hidden" value="ref123" name="ref">
+
+			<?php 
+			if($errores!=""){
+				echo "<div class='errores'>$errores</div>";
+			}
+			?>
 
 			<div class="campo">
 				<input type="submit" value="Enviar datos">

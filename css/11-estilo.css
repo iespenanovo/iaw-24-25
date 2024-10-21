@@ -17,3 +17,15 @@ h1 {text-align: center;}
 .bloque {
 	display: block;
 }
+
+.error {
+	color: red;
+}
+.errores {
+	border: 1px solid red;
+	padding: 0.3rem;
+	margin: 0.3rem;
+	border-radius: 10px;
+	background-color: lightgrey;
+	color:red;
+}
