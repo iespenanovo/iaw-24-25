@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Formularios (leer datos desde php)</title>
+	<title>Formularios GET (leer datos desde php)</title>
 	<link rel="stylesheet" href="css/09-estilo.css">
 </head>
 <body>
@@ -15,10 +15,15 @@
 		$edad=$_GET['edad']??"";
 		$fnac=$_GET['fnac']??"";
 		$sexo=$_GET['sexo']??"";
-		var_dump($sexo);
+		$terminos=$_GET['terminos']??"";
+		$prov=$_GET['prov']??"";
+		$dep=$_GET['dep']??array();//si no existe dep, creamos un array vacío
+		$coment=$_GET['coment']??"";
+		$ref=$_GET['ref']??"";// ref es campo oculto, también podemos leer
+		//var_dump($ref);
 	?>
 	<div class="contenedor">
-		<h1>Lectura de datos formularios en PHP</h1>
+		<h1>Lectura de datos formularios GET en PHP</h1>
 		<form action="" method="GET"> 
 			<!-- method="POST", no se visualizan en URL los campos-->
 			<fieldset>
@@ -56,7 +61,7 @@
 					<label for="hombre">Hombre</label>
 				</div>
 				<div class="campo">
-					<input id="terminos" type="checkbox" name="terminos" value="SI" required>
+					<input id="terminos" type="checkbox" name="terminos" value="SI" <?php echo $terminos=="SI"?"checked":"" ?> >
 					<!-- checked para selección por defecto -->
 					<label for="terminos">Acepto términos y condiciones</label>
 				</div>
@@ -68,10 +73,10 @@
 					>
 					<select name="prov" id="prov">
 						<option value=""></option>
-						<option value="CO">A Coruña</option>
-						<option value="LU" >Lugo</option>
-						<option value="OU">Ourense</option>
-						<option value="PO">Ponteveddra</option>
+						<option value="CO" <?php echo $prov=="CO"?"selected":"" ?> >A Coruña</option>
+						<option value="LU" <?php echo $prov=="LU"?"selected":"" ?> >Lugo</option>
+						<option value="OU" <?php echo $prov=="OU"?"selected":"" ?> >Ourense</option>
+						<option value="PO" <?php echo $prov=="PO"?"selected":"" ?> >Ponteveddra</option>
 						<!-- selected, parámetro para seleccionar una opción por defecto -->
 					</select>
 				</div>
@@ -79,12 +84,13 @@
 					<label for="dep">Deportes:</label>
 					<select name="dep[]" id="dep" multiple size="6">
 						<!-- size permite indicar el número de opciones que se visualizan sin necesidad de 'scroll', por defecto se visualizan solo 4/5 opciones -->
-						<option value="F">Fútbol</option>
-						<option value="B">Baloncesto</option>
-						<option value="T">Ténis</option>
-						<option value="P">Polo</option>
-						<option value="C">Ciclismo</option>
-						<option value="G">Golf</option>
+
+						<option value="F" <?php echo in_array("F", $dep)?"selected":"" ?> >Fútbol</option>
+						<option value="B" <?php echo in_array("B", $dep)?"selected":"" ?> >Baloncesto</option>
+						<option value="T" <?php echo in_array("T", $dep)?"selected":"" ?> >Ténis</option>
+						<option value="P" <?php echo in_array("P", $dep)?"selected":"" ?> >Polo</option>
+						<option value="C" <?php echo in_array("C", $dep)?"selected":"" ?> >Ciclismo</option>
+						<option value="G" <?php echo in_array("G", $dep)?"selected":"" ?> >Golf</option>
 					</select>
 				</div>
 			</fieldset>
@@ -92,7 +98,7 @@
 				<legend>Grupo 4</legend>
 				<div class="campo">
 					<label class="bloque" for="coment">Comentario:</label>
-					<textarea name="coment" id="coment"></textarea>
+					<textarea name="coment" id="coment"><?php echo $coment ?></textarea>
 				</div>
 			</fieldset>
 			<input type="hidden" value="ref123" name="ref">
