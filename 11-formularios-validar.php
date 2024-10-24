@@ -9,6 +9,12 @@
 </head>
 <body>
 	<?php
+		/* función que guardará los datos en un fichero de texto plano 
+		con formato csv, separador de campos ; */
+		function enviarDatosFichero($nombre,$email,$edad,$fnac,$sexo,$terminos,$prov,$dep,$coment) {
+
+				
+		}	
 		//var_dump($_POST);
 		$nombre=$_POST['nombre']??"";//devuelve el campo 'nombre' del formulario, si existe, en caso contrario devuelve cadena vacía ""
 		//la variable no es obligatorio que tenga el mismo nombre que el campo, aunque es una buena práctica
@@ -160,7 +166,11 @@
 				if($errores!="") {
 					echo "\n<div class='alert alert-danger' role='alert'>$errores</div>";
 					echo "\n<div class='campo'>\n\t<input type='submit' value='Enviar datos'>\n</div>";
-				} else { echo "<div class='alert alert-success' role='alert'>Formulario aceptado</div>";
+				} else { echo "<div class='alert alert-success' role='alert'>
+									Formulario aceptado <a href='' class='btn btn-success'>Nuevo registro</a>
+							   </div>";
+						 enviarDatosFichero($nombre,$email,$edad,$fnac,$sexo,$terminos,$prov,$dep,$coment);
+
 				}
 			} else {
 				echo "\n<div class='campo'>\n\t<input type='submit' value='Enviar datos'>\n</div>";
