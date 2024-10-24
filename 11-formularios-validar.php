@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Validar Formularios con php)</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/11-estilo.css">
 </head>
 <body>
@@ -20,7 +21,7 @@
 		$dep=$_POST['dep']??array();//si no existe dep, creamos un array vacío
 		$coment=$_POST['coment']??"";
 		$ref=$_POST['ref']??"";// ref es campo oculto, también podemos leer
-		//var_dump($ref);
+		//var_dump($edad);
 		$errores="";
 	?>
 	<div class="contenedor">
@@ -38,7 +39,7 @@
 					}
 				?>
 				<div class="campo">
-					<label for="nombre" class="<?php echo $clases ?>">Nombre:</label>
+					<label for="nombre" class="<?php echo $clases ?>">*Nombre:</label>
 					<input id="nombre" type="text" name="nombre" value="<?php echo $nombre ?>" >
 					<!-- parámetro: placeholder="Nombre" -->
 					<!-- value="valor por defecto" -->
@@ -51,15 +52,30 @@
 					}
 				?>				
 				<div class="campo">
-					<label for="email" class="<?php echo $clases ?>">E-mail:</label>
+					<label for="email" class="<?php echo $clases ?>">*E-mail:</label>
 					<input id="email" type="email" name="email" value="<?php echo $email ?>">
 				</div>
+
+				<?php 
+					$clases="";
+					if ($_POST and $edad<18) {
+						$clases="error";
+						$errores.="\n<p>El campo edad es obligatorio y debe ser >=18 </p>";
+					}
+				?>	
 				<div class="campo">
-					<label for="edad">Edad (años):</label>
+					<label for="edad" class="<?php echo $clases ?>">Edad (años):</label>
 					<input id="edad" type="number" name="edad" value="<?php echo $edad ?>">
 				</div>
+				<?php 
+					$clases="";
+					if ($_POST and $fnac=="") {//$_POST devuelve false si el formulario no fue enviado, y true en caso contrario
+						$clases="error";
+						$errores.="\n<p>El campo fecha de nacimiento es obligatorio</p>";
+					}
+				?>
 				<div class="campo">
-					<label for="fnac">Fecha nacimiento:</label
+					<label for="fnac" class="<?php echo $clases ?>">*Fecha nacimiento:</label
 					>
 					<input type="date" name="fnac" id="fnac" value="<?php echo $fnac ?>">
 				</div>
@@ -67,18 +83,32 @@
 			</fieldset>
 			<fieldset>
 				<legend>Grupo 2</legend>
+				<?php 
+					$clases="";
+					if ($_POST and $sexo=="") {
+						$clases="error";
+						$errores.="\n<p>El campo sexo es obligatorio</p>";
+					}
+				?>	
 				<div class="campo">
-					<label class="bloque">Sexo:</label>
+					<label class="bloque <?php echo $clases ?>">*Sexo:</label>
 					<input id="mujer" type="radio" name="sexo" value="M" <?php echo $sexo=="M"?"checked":"" ?>>
 					<!-- checked para selección por defecto -->
 					<label for="mujer">Mujer</label>
 					<input id="hombre" type="radio" name="sexo" value="H" <?php echo $sexo=="H"?"checked":"" ?>>
 					<label for="hombre">Hombre</label>
 				</div>
+				<?php 
+					$clases="";
+					if ($_POST and $terminos=="") {
+						$clases="error";
+						$errores.="\n<p>Es necesario aceptar las condiciones</p>";
+					}
+				?>				
 				<div class="campo">
 					<input id="terminos" type="checkbox" name="terminos" value="SI" <?php echo $terminos=="SI"?"checked":"" ?> >
 					<!-- checked para selección por defecto -->
-					<label for="terminos">Acepto términos y condiciones</label>
+					<label for="terminos" class="<?php echo $clases ?>">*Acepto términos y condiciones</label>
 				</div>
 			</fieldset>
 			<fieldset>
@@ -95,8 +125,15 @@
 						<!-- selected, parámetro para seleccionar una opción por defecto -->
 					</select>
 				</div>
+				<?php 
+					$clases="";
+					if ($_POST and count($dep)<2) { //'count()' devuelve el número de elementos del array '$dep'
+						$clases="error";
+						$errores.="\n<p>Es obligatorio marcar un mínimo de 2 deportes </p>";
+					}
+				?>					
 				<div class="campo">
-					<label for="dep">Deportes:</label>
+					<label for="dep" class="<?php echo $clases ?>">*Deportes:</label>
 					<select name="dep[]" id="dep" multiple size="6">
 						<!-- size permite indicar el número de opciones que se visualizan sin necesidad de 'scroll', por defecto se visualizan solo 4/5 opciones -->
 
@@ -119,14 +156,16 @@
 			<input type="hidden" value="ref123" name="ref">
 
 			<?php 
-			if($errores!=""){
-				echo "<div class='errores'>$errores</div>";
+			if($_POST){ //si el formulario fue enviado
+				if($errores!="") {
+					echo "\n<div class='alert alert-danger' role='alert'>$errores</div>";
+					echo "\n<div class='campo'>\n\t<input type='submit' value='Enviar datos'>\n</div>";
+				} else { echo "<div class='alert alert-success' role='alert'>Formulario aceptado</div>";
+				}
+			} else {
+				echo "\n<div class='campo'>\n\t<input type='submit' value='Enviar datos'>\n</div>";
 			}
 			?>
-
-			<div class="campo">
-				<input type="submit" value="Enviar datos">
-			</div>
 			
 		</form>		
 	</div>

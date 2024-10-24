@@ -5,11 +5,19 @@
 	border: 1px solid grey;
 	padding: 0.5rem;
 }
+
+fieldset {
+	border: 1px solid black;
+	padding: 1rem;
+	margin-bottom: 1rem;
+
+}
 h1 {text-align: center;}
 
 .campo {
 	margin: 0.8rem 0;
 }
+
 
 #edad {
 	width: 3rem;
@@ -21,11 +29,12 @@ h1 {text-align: center;}
 .error {
 	color: red;
 }
-.errores {
+
+/*.errores {
 	border: 1px solid red;
 	padding: 0.3rem;
 	margin: 0.3rem;
 	border-radius: 10px;
 	background-color: lightgrey;
 	color:red;
-}
+}*/
