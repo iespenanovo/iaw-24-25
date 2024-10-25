@@ -13,6 +13,16 @@
 		con formato csv, separador de campos ; */
 		function enviarDatosFichero($nombre,$email,$edad,$fnac,$sexo,$terminos,$prov,$dep,$coment) {
 
+			$fichero="dat/datos.csv";
+			$gf=@fopen($fichero, "a") or die("<p class='error'>No ha sido posible abrir el fichero $fichero</p>");//abre fichero en modo añadir, si no existe, lo crea. fopen devuelve un gestor de fichero , que guardamos en $gf. A partir de aquí tenemos que operar con este gestor, no con el nombre del fichero.
+			$deportes=implode("-", $dep);//pasamos los valores del array dep a una cadena, separados por '-' 
+
+			fputs($gf,"$nombre;$email;$edad;$fnac;$sexo;$terminos;$prov;$deportes;$coment\n");
+
+
+
+			fclose($gf);
+
 				
 		}	
 		//var_dump($_POST);
