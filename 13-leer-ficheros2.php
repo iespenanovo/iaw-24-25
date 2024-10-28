@@ -58,11 +58,18 @@
 		echo "\n\t\t<td>$email</td>";
 		echo "\n\t\t<td>$edad</td>";
 		echo "\n\t\t<td>$fnac</td>";
-		echo "\n\t\t<td>$sexo</td>";
+		echo "\n\t\t<td>";
+		echo $sexo=="H"?"Hombre":"Mujer";
+		echo "</td>";
 		echo "\n\t\t<td>$terminos</td>";
 		echo "\n\t\t<td>$nombreProvincias[$prov]</td>";
 		echo "\n\t\t<td>";
-		echo "$dep";//emitir lista ul con nombres de los deportes
+		$deportes=explode("-", $dep);
+		echo "\n\t\t\t<ul>";
+		foreach ($deportes as $codigoDeporte) {
+			echo "\n\t\t\t\t<li>$nombreDeportes[$codigoDeporte]</li>" ;
+		}
+		echo "\n\t\t\t</ul>";
 		echo "\n\t\t</td>";
 		echo "\n\t\t<td>$coment\t</td>";
 		$linea=fgets($gf);
