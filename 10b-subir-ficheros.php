@@ -8,7 +8,7 @@
 
 <h1>Enviar Fichero</h1>
 
-<form action="" method="post" enctype="multipart/form-data">
+<form action="" method="POST" enctype="multipart/form-data">
 	
 	<p><label>
 		Nombre:
@@ -49,7 +49,7 @@ echo "<br>Ubicación temporal: $fichero_temp ";
 echo "<br>Tamaño: $fichero_size ";
 echo "<hr>";
 
-$directorio="datos";
+$directorio="dat";
 
 if ($fichero_size>51200) {
 	echo "<br>El fichero $fichero_name ocupa más de 51.200 bytes";
