@@ -111,6 +111,8 @@
 		echo "<br> {$fila['id']} - {$fila['nombre']} - {$fila['nif']} - {$fila['clave']} - {$fila['sexo']} - {$fila['deportes']} - {$fila['provincia']} - {$fila['so']} - {$fila['comentario']}";
 	}
 
+	//return;
+
 	$SQL="DELETE FROM alumnos WHERE provincia='CO'";
 	echo "<p>$SQL</p>";
 	consultaSQL($c,$SQL);
