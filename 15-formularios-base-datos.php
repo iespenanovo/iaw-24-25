@@ -9,6 +9,9 @@
 </head>
 <body>
 	<?php
+		function enviarDatosBaseDatos($nombre,$nif,$clave,$sexo,$dep,$prov,$so,$coment) {
+			//
+		}
 
 		//var_dump($_POST);
 		$nombre=$_POST['nombre']??"";
@@ -25,10 +28,6 @@
 	<div class="contenedor">
 		<h1>Validar formularios con PHP</h1>
 		<form action="" method="POST"> 
-			<!-- method="POST", no se visualizan en URL los campos-->
-			<fieldset>
-				<legend>Grupo 1</legend>
-
 				<?php 
 					$clases="";
 					if ($_POST and $nombre=="") {//$_POST devuelve false si el formulario no fue enviado, y true en caso contrario
@@ -64,12 +63,9 @@
 				<div class="campo">
 					<label for="clave" class="<?php echo $clases ?>">*Contraseña:</label
 					>
-					<input type="date" name="clave" id="clave" value="<?php echo $clave ?>">
+					<input type="password" name="clave" id="clave">
 				</div>
 				
-			</fieldset>
-			<fieldset>
-				<legend>Grupo 2</legend>
 				<?php 
 					$clases="";
 					if ($_POST and $sexo=="") {
@@ -85,21 +81,7 @@
 					<input id="hombre" type="radio" name="sexo" value="H" <?php echo $sexo=="H"?"checked":"" ?>>
 					<label for="hombre">Hombre</label>
 				</div>
-				<?php 
-					$clases="";
-					if ($_POST and $terminos=="") {
-						$clases="error";
-						$errores.="\n<p>Es necesario aceptar las condiciones</p>";
-					}
-				?>				
-				<div class="campo">
-					<input id="terminos" type="checkbox" name="terminos" value="SI" <?php echo $terminos=="SI"?"checked":"" ?> >
-					<!-- checked para selección por defecto -->
-					<label for="terminos" class="<?php echo $clases ?>">*Acepto términos y condiciones</label>
-				</div>
-			</fieldset>
-			<fieldset>
-				<legend>Grupo 3</legend>
+
 				<div class="campo">
 					<label for="prov">Provincia:</label
 					>
@@ -108,10 +90,11 @@
 						<option value="CO" <?php echo $prov=="CO"?"selected":"" ?> >A Coruña</option>
 						<option value="LU" <?php echo $prov=="LU"?"selected":"" ?> >Lugo</option>
 						<option value="OU" <?php echo $prov=="OU"?"selected":"" ?> >Ourense</option>
-						<option value="PO" <?php echo $prov=="PO"?"selected":"" ?> >Ponteveddra</option>
+						<option value="PO" <?php echo $prov=="PO"?"selected":"" ?> >Pontevedra</option>
 						<!-- selected, parámetro para seleccionar una opción por defecto -->
 					</select>
 				</div>
+
 				<?php 
 					$clases="";
 					if ($_POST and count($dep)<2) { //'count()' devuelve el número de elementos del array '$dep'
@@ -132,15 +115,28 @@
 						<option value="G" <?php echo in_array("G", $dep)?"selected":"" ?> >Golf</option>
 					</select>
 				</div>
-			</fieldset>
-			<fieldset>
-				<legend>Grupo 4</legend>
+
+				<?php 
+					$clases="";
+					if ($_POST and count($so)<2) { //'count()' devuelve el número de elementos del array '$so'
+						$clases="error";
+						$errores.="\n<p>Es obligatorio marcar un mínimo de 2 Sistemas</p>";
+					}
+				?>					
+				<div class="campo">
+					<label for="so" class="<?php echo $clases ?>">*Sistemas Operativos:</label>
+					<select name="so[]" id="so" multiple size="4">
+						<option value="W10" <?php echo in_array("W10", $so)?"selected":"" ?> >Windows 10</option>
+						<option value="w11" <?php echo in_array("w11", $so)?"selected":"" ?> >Windows 11</option>
+						<option value="LX" <?php echo in_array("LX", $so)?"selected":"" ?> >Linux</option>
+						<option value="MOS" <?php echo in_array("MOS", $so)?"selected":"" ?> >MacOS</option>
+					</select>
+				</div>
+
 				<div class="campo">
 					<label class="bloque" for="coment">Comentario:</label>
 					<textarea name="coment" id="coment"><?php echo $coment ?></textarea>
 				</div>
-			</fieldset>
-			<input type="hidden" value="ref123" name="ref">
 
 			<?php 
 			if($_POST){ //si el formulario fue enviado
@@ -150,7 +146,7 @@
 				} else { echo "<div class='alert alert-success' role='alert'>
 									Formulario aceptado <a href='' class='btn btn-success'>Nuevo registro</a>
 							   </div>";
-						 enviarDatosFichero($nombre,$email,$edad,$fnac,$sexo,$terminos,$prov,$dep,$coment);
+						 enviarDatosBaseDatos($nombre,$nif,$clave,$sexo,$dep,$prov,$so,$coment);
 
 				}
 			} else {
