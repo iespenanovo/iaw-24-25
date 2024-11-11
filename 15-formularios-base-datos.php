@@ -103,7 +103,7 @@
 					}
 				?>					
 				<div class="campo">
-					<label for="dep" class="<?php echo $clases ?>">*Deportes:</label>
+					<label for="dep" class="bloque <?php echo $clases ?>">*Deportes:</label>
 					<select name="dep[]" id="dep" multiple size="6">
 						<!-- size permite indicar el número de opciones que se visualizan sin necesidad de 'scroll', por defecto se visualizan solo 4/5 opciones -->
 
@@ -124,7 +124,7 @@
 					}
 				?>					
 				<div class="campo">
-					<label for="so" class="<?php echo $clases ?>">*Sistemas Operativos:</label>
+					<label for="so" class="bloque <?php echo $clases ?>">*Sistemas Operativos:</label>
 					<select name="so[]" id="so" multiple size="4">
 						<option value="W10" <?php echo in_array("W10", $so)?"selected":"" ?> >Windows 10</option>
 						<option value="w11" <?php echo in_array("w11", $so)?"selected":"" ?> >Windows 11</option>
