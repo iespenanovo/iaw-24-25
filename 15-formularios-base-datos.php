@@ -9,8 +9,23 @@
 </head>
 <body>
 	<?php
-		function enviarDatosBaseDatos($nombre,$nif,$clave,$sexo,$dep,$prov,$so,$coment) {
-			//
+		require "datos-conexion-BD.php";
+		$BD_baseDatos="iaw-24-25";
+		$c=@mysqli_connect($BD_servidor,$BD_usuario,$BD_clave,$BD_baseDatos,$BD_puerto) or die("<p class='error'>Error conectando con el servidor de bases de datos $BD_servidor</p>");		
+
+		function enviarDatosBaseDatos($c,$nombre,$nif,$clave,$sexo,$dep,$prov,$so,$coment) {
+			
+			$deportes=implode("-", $dep);//pasamos los valores del array dep a una cadena, separados por '-' 
+			$sistemasOp=implode("-", $so); //lo mismo que el caso anterior
+			$cadenaHash=hash('md5', $clave); //encriptamos la clave con 'md5'
+			$SQL="INSERT INTO `alumnos` ";
+			$SQL.="(`nombre`, `nif`, `clave`, `sexo`, `deportes`, `provincia`, `so`, `comentario`) ";
+			$SQL.="VALUES ('$nombre','$nif','$cadenaHash','$sexo','$deportes','$prov','$sistemasOp','$coment')";
+
+			//echo "<hr>$SQL<hr>";
+
+			consultaSQL($c,$SQL);
+
 		}
 
 		//var_dump($_POST);
@@ -146,7 +161,7 @@
 				} else { echo "<div class='alert alert-success' role='alert'>
 									Formulario aceptado <a href='' class='btn btn-success'>Nuevo registro</a>
 							   </div>";
-						 enviarDatosBaseDatos($nombre,$nif,$clave,$sexo,$dep,$prov,$so,$coment);
+						 enviarDatosBaseDatos($c,$nombre,$nif,$clave,$sexo,$dep,$prov,$so,$coment);
 
 				}
 			} else {
