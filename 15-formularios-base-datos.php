@@ -10,6 +10,7 @@
 <body>
 	<?php
 		require "datos-conexion-BD.php";
+		require "funciones.php";
 		$BD_baseDatos="iaw-24-25";
 		$c=@mysqli_connect($BD_servidor,$BD_usuario,$BD_clave,$BD_baseDatos,$BD_puerto) or die("<p class='error'>Error conectando con el servidor de bases de datos $BD_servidor</p>");		
 
