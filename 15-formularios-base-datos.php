@@ -25,13 +25,36 @@
 
 			//echo "<hr>$SQL<hr>";
 
-			consultaSQL($c,$SQL);
+			//consultaSQL($c,$SQL);
+			@mysqli_query($c,$SQL);
+			switch (mysqli_errno($c)) {
+				case 0:
+					// ok
+					$mensaje="<div class='alert alert-success' role='alert'>
+									Formulario aceptado</div>";
+					$mensaje.="<div><a href='' class='btn btn-success'>Nuevo registro</a>
+							   </div>";				
+					break;
+				case 1062:
+					$mensaje="<div class='alert alert-warning'>El NIF $nif ya existe en la base de datos</div>";
+					$mensaje.="\n<div class='campo'>\n\t<input type='submit' value='Enviar datos'>\n</div>";
+					break;
+				
+				default:
+					// error desconocido o inesperado:
+					$mensaje="<p class='alert alert-danger'>Error en sentencia SQL : <strong>$SQL</strong></p>";
+					$mensaje.="<p class='alert alert-danger'>Error nº: <strong>".mysqli_errno($idCon)."</strong></p>";
+					$mensaje.="<p class='alert alert-danger'>Descripción: <strong>".mysqli_error($idCon)."</strong></p>";
+					break;
+			}
+			echo $mensaje;
 
 		}
 
 		//var_dump($_POST);
 		$nombre=$_POST['nombre']??"";
 		$nif=$_POST['nif']??"";
+		$nif=strtoupper($nif);//pasamos a mayúsculas 
 		$clave=$_POST['clave']??"";
 		$sexo=$_POST['sexo']??"";
 		$dep=$_POST['dep']??array();//si no existe dep, creamos un array vacío
@@ -159,11 +182,8 @@
 				if($errores!="") {
 					echo "\n<div class='alert alert-danger' role='alert'>$errores</div>";
 					echo "\n<div class='campo'>\n\t<input type='submit' value='Enviar datos'>\n</div>";
-				} else { echo "<div class='alert alert-success' role='alert'>
-									Formulario aceptado <a href='' class='btn btn-success'>Nuevo registro</a>
-							   </div>";
-						 enviarDatosBaseDatos($c,$nombre,$nif,$clave,$sexo,$dep,$prov,$so,$coment);
-
+				} else { 
+					enviarDatosBaseDatos($c,$nombre,$nif,$clave,$sexo,$dep,$prov,$so,$coment);
 				}
 			} else {
 				echo "\n<div class='campo'>\n\t<input type='submit' value='Enviar datos'>\n</div>";
