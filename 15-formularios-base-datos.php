@@ -9,11 +9,9 @@
 </head>
 <body>
 	<?php
-		require "datos-conexion-BD.php";
+		require "datos-conexion-BD-iaw-24-25.php";
 		require "funciones.php";
-		$BD_baseDatos="iaw-24-25";
-		$c=@mysqli_connect($BD_servidor,$BD_usuario,$BD_clave,$BD_baseDatos,$BD_puerto) or die("<p class='error'>Error conectando con el servidor de bases de datos $BD_servidor</p>");		
-
+		
 		function enviarDatosBaseDatos($c,$nombre,$nif,$clave,$sexo,$dep,$prov,$so,$coment) {
 			
 			$deportes=implode("-", $dep);//pasamos los valores del array dep a una cadena, separados por '-' 
