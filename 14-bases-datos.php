@@ -67,11 +67,11 @@
 
 	$cadenaHash=hash('md5', 'abc123.');
 	$SQL="INSERT INTO `alumnos` (`nombre`, `nif`, `clave`, `sexo`, `deportes`, `provincia`, `so`, `comentario`) VALUES
-	('Ana Díaz','12345678Z','$cadenaHash','M','N*B','LU','w10*LX','Preferencia nocturno'),
-	('Luis Fernández','12345677J','".hash('md5','abc123.')."','H','F*B','CO','w10*LX','Preferencia diúrno'),
-	('Gonzalo Abuín','12345676N','".hash('md5','abc123.')."','H','F*N','PO','w8*MOS',''),
-	('Julia Moteagudo','12345675B','".hash('md5','abc123.')."','M','F*N*B','CO','w8*LX','Becario'),
-	('César Ríos','12345674X','".hash('md5','abc123.')."','H','F*N','LU','w10','Preferencia nocturno')
+	('Ana Díaz','12345678Z','$cadenaHash','M','N-B','LU','W10-LX','Preferencia nocturno'),
+	('Luis Fernández','12345677J','".hash('md5','abc123.')."','H','F-B','CO','W10-LX','Preferencia diúrno'),
+	('Gonzalo Abuín','12345676N','".hash('md5','abc123.')."','H','F-P','PO','W10-MOS',''),
+	('Julia Moteagudo','12345675B','".hash('md5','abc123.')."','M','F-P-B','CO','W10-LX','Becario'),
+	('César Ríos','12345674X','".hash('md5','abc123.')."','H','F-P','LU','W10','Preferencia nocturno')
 	";
 
 	echo "<p>$SQL</p>";
