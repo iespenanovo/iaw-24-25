@@ -16,7 +16,8 @@
 			
 			$deportes=implode("-", $dep);//pasamos los valores del array dep a una cadena, separados por '-' 
 			$sistemasOp=implode("-", $so); //lo mismo que el caso anterior
-			$cadenaHash=hash('md5', $clave); //encriptamos la clave con 'md5'
+			//$cadenaHash=hash('md5', $clave); //encriptamos la clave con 'md5'
+			$cadenaHash=@crypt($clave); //encriptamos la clave con algoritmo crypt
 			$SQL="INSERT INTO `alumnos` ";
 			$SQL.="(`nombre`, `nif`, `clave`, `sexo`, `deportes`, `provincia`, `so`, `comentario`) ";
 			$SQL.="VALUES ('$nombre','$nif','$cadenaHash','$sexo','$deportes','$prov','$sistemasOp','$coment')";
@@ -164,7 +165,7 @@
 					<label for="so" class="bloque <?php echo $clases ?>">*Sistemas Operativos:</label>
 					<select name="so[]" id="so" multiple size="4">
 						<option value="W10" <?php echo in_array("W10", $so)?"selected":"" ?> >Windows 10</option>
-						<option value="w11" <?php echo in_array("w11", $so)?"selected":"" ?> >Windows 11</option>
+						<option value="W11" <?php echo in_array("w11", $so)?"selected":"" ?> >Windows 11</option>
 						<option value="LX" <?php echo in_array("LX", $so)?"selected":"" ?> >Linux</option>
 						<option value="MOS" <?php echo in_array("MOS", $so)?"selected":"" ?> >MacOS</option>
 					</select>
