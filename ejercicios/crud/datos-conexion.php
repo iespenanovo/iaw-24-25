@@ -2,6 +2,6 @@
 $servidor="localhost";
 $usuario="root";
 $clave="";
-$baseDatos="iaw21-22";
+$baseDatos="crud";
 $puerto=3306;
 ?>
